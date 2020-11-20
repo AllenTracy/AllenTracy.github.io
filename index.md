@@ -40,4 +40,4 @@ Having trouble with Pages? Check out our [documentation](https://docs.github.com
 
 ### remark
 
-I have some questions，how to create the blog !!!!!! Please contact me in https://github.com/AllenTracy/AllenTracy.github.io/issues
+I have some questions，how to create the blog !!!!!! Please contact me in https://github.com/AllenTracy/AllenTracy.github.io/issues。。ahhhhh~help me!!!
