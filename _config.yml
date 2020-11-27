@@ -9,9 +9,9 @@
 #--------------------------
 title: AllenTracy的小破站                          # the main title
 
-tagline: AllenTracy的小破站.  # it will display as the sub-title
+tagline: 等待着那将要盛装出场的未来.  # it will display as the sub-title
 
-description: >-                        # used by seo meta and the atom feed
+description: >-                        # used by seo a and the atom feedmet
   A minimal, portfolio, sidebar,
   bootstrap Jekyll theme with responsive web design
   and focuses on text presentation.
