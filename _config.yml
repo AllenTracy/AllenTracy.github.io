@@ -7,9 +7,9 @@
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 #--------------------------
-title: Chirpy                          # the main title
+title: AllenTracy的小破站                          # the main title
 
-tagline: A text-focused Jekyll theme.  # it will display as the sub-title
+tagline: AllenTracy的小破站.  # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
   A minimal, portfolio, sidebar,
@@ -17,21 +17,21 @@ description: >-                        # used by seo meta and the atom feed
   and focuses on text presentation.
 
 # fill in the base hostname & protocol for your site, e.g., 'https://username.github.io'
-url: ''
+url: 'https://allentracy.github.io/'
 
 author: AllenTracy                  # change to your full name
 
 avatar: /assets/img/sample/avatar.jpg   # support internet resources
 
 github:
-  username: github_username             # change to your github username
+  username: AllenTracy             # change to your github username
 
-twitter:
-  username: twitter_username            # change to your twitter username
+#twitter:
+#  username: twitter_username            # change to your twitter username
 
 social:
   name: AllenTracy                  # it will shows as the copyright owner in Footer
-  email:              # change to your email address
+  #email:              # change to your email address
   links:
     # The first element serves as the copyright owner's link
     - https://github.com/AllenTracy       # change to your github homepage
@@ -39,7 +39,7 @@ social:
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/username
 
-google_site_verification: google_meta_tag_verification # change to your verification string
+google_site_verification: AllenTracy # change to your verification string
 #--------------------------
 
 

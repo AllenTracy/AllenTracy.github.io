@@ -4,7 +4,7 @@ author: Cotes Chung
 date: 2019-08-11 00:34:00 +0800
 categories: [Blogging, Tutorial]
 tags: [favicon]
-toc: false
+toc: true
 ---
 
 In [**Chirpy**](https://github.com/cotes2020/jekyll-theme-chirpy/), the image files of [Favicons](https://www.favicon-generator.org/about/) are placed in `assets/img/favicons/`. You may need to replace them with your own. So let's see how to customize these Favicons.
@@ -21,7 +21,7 @@ Download the generated package, unzip and delete the following two from the extr
 
 - browserconfig.xml
 - manifest.json
- 
+
 Now, copy the remaining image files (`.PNG` and `.ICO`) from the extracted `.zip` file to cover the original files in the folder `assets/img/favicons/`.
 
 The following table helps you understand the changes to the icon file:
