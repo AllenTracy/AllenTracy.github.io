@@ -8,7 +8,7 @@ pin: true
 
 
 
-### springcloud gateway 初体验
+## springcloud gateway 初体验
 
 依赖：
 
@@ -76,7 +76,7 @@ public class Application {
 
 
 
-### 网关处理器
+## 网关处理器
 
 当请求到达网关时，会有各种web处理器对请求进行匹配和处理，流程如下
 
@@ -88,7 +88,7 @@ graph LR
 	FilteringWebHandler-->DefaultGatewayFilterChain
 ```
 
-#### 请求分发器 dispatcherHandler
+### 请求分发器 dispatcherHandler
 
 dispatcherHandler实现了webHandler接口，webHandler接口是用来处理web请求的。在dispatcherHandler的构造函数中会初始化HandlerMapping，核心处理的方法是handle（ServerWebExchange exchange），而HandlerMapping是一个定义了请求与处理器对象映射的接口且有多个实现类，如ControllerEndpointHandlerMapping和RouterFunctionMapping.
 
@@ -133,7 +133,7 @@ public class DispatcherHandler implements WebHandler, ApplicationContextAware {
 
 
 
-#### 路由断言处理器 RoutePredicateHandlerMapping
+### 路由断言处理器 RoutePredicateHandlerMapping
 
 RoutePredicateHandlerMapping 用于匹配具体的Route，并返回处理 Route 的 FilteringWebHandler
 
@@ -217,7 +217,7 @@ Spring Cloud Gateway 的 GatewayWebfluxEndpoint 提供的 HTTP API 不需要经�
 
 
 
-#### 过滤器处理器 FilteringWebHandler
+### 过滤器处理器 FilteringWebHandler
 
 FilteringWebHandler 通过创建所请求 Route 对应的 GatewayFilterChain， 在网关进行过滤处理
 
@@ -263,7 +263,7 @@ public class FilteringWebHandler implements WebHandler {
 
 全局变量 globalFilters 是Spring Cloud Gateway 定义的全局过滤器，构造函数通过传入全局过滤器，对过滤器进行适配。因为过滤器有优先级，loadFilters 该方法主要是判断过滤器是否实现了 Ordered 接口，如果实现了则返回OrderedGatewayFilter，否则返回适配的过滤器。最后将适配的过滤器加入全局过滤器，并对过滤器进行排序，根据优先级对请求进行处理。
 
-#### 生成过滤器链
+### 生成过滤器链
 
 FilteringWebHandler 内部静态类 DefaultGatewayFilterChain
 
@@ -309,7 +309,7 @@ FilteringWebHandler 的 handle 方法，首先获取请求对应的路由过滤�
 
 
 
-### GatewayAutoConfiguration
+## GatewayAutoConfiguration
 
 GatewayAutoConfiguration 已经把 InMemoryRouteDefinitionRepository 注册成bean了，可以进行动态路由配置
 
@@ -374,7 +374,7 @@ public class GatewayAutoConfiguration {
 
 
 
-### 路由定义定位器 RouteDefinitionLocator
+## 路由定义定位器 RouteDefinitionLocator
 
 ```java
 public interface RouteDefinitionLocator {
@@ -393,7 +393,7 @@ public interface RouteDefinitionLocator {
 
 
 
-#### RouteDefinitionRepository
+### RouteDefinitionRepository
 
 ```java
 public interface RouteDefinitionRepository
@@ -404,7 +404,7 @@ public interface RouteDefinitionRepository
 
 
 
-#### RefreshRoutesEvent 事件刷新路由
+### RefreshRoutesEvent 事件刷新路由
 
 ```
 /**
@@ -425,7 +425,7 @@ public class RefreshRoutesEvent extends ApplicationEvent {
 
 
 
-#### RouteDefinition
+### RouteDefinition
 
 RouteDefinition作为GatewayProperties中的属性，在网关启动的时候读取配置文件中的相关配置信息
 
@@ -561,7 +561,7 @@ public class RouteDefinition {
 
 
 
-#### PropertiesRouteDefinitionLocator 基于配置属性的路由定义定位器
+### PropertiesRouteDefinitionLocator 基于配置属性的路由定义定位器
 
 从配置文件中读取路由配置信息
 
@@ -586,7 +586,7 @@ PropertiesRouteDefinitionLocator 通过构造函数传入GatewayProperties 对�
 
 
 
-#### DiscoveryClientRouteDefinitionLocator 基于服务发现的路由定义定位器
+### DiscoveryClientRouteDefinitionLocator 基于服务发现的路由定义定位器
 
 该类通过服务发现组件从注册中心获取服务信息，此时路由定义的源就是配置中心
 
@@ -737,7 +737,7 @@ DiscoveryClientRouteDefinitionLocator -> getRouteDefinitions()
 
 getRouteDefinitions() 方法通过服务发现客户端从注册中心获取服务信息，组装成RouteDefinition路由定义列表，并将配置中的路由断言和过滤应用到RouteDefinition中
 
-#### CachingRouteDefinitionLocator 基于缓存的路由定义定位器
+### CachingRouteDefinitionLocator 基于缓存的路由定义定位器
 
 缓存方式的路由定义定位器，通过传入路由定义定位器定义并缓存到本地。通过监听器路由刷新事件RefreshRoutesEvent 来刷新本地缓存的路由定义信息
 
@@ -784,7 +784,7 @@ public class CachingRouteDefinitionLocator
 }
 ```
 
-#### CompositeRouteDefinitionLocator  组合路由定义定位器
+### CompositeRouteDefinitionLocator  组合路由定义定位器
 
 组合方式路由定义定位器使用组合模式进行实现，组合多个 RouteDefinitionLocator 的实现，为获取路由定义信息 getRouteDefinitions提供统一入口，组合的逻辑很简单，通过传入的路由定义定位器作为代理，具体的路由定义实际上是由传入的路由定义定位器产生。
 
@@ -804,7 +804,7 @@ public class CompositeRouteDefinitionLocator implements RouteDefinitionLocator {
 }
 ```
 
-#### InMemoryRouteDefinitionRepository
+### InMemoryRouteDefinitionRepository
 
 其提供了save和delete方法，这样就可以修改当前路由配置信息，路由配置信息修改完毕之后，再用spring的事件触发 <B>RefreshRoutesEvent</B> 事件来刷新路由就行了
 
@@ -878,7 +878,7 @@ public class InMemoryRouteDefinitionRepository implements RouteDefinitionReposit
 
 
 
-### RouteLocator 路由定位器
+## RouteLocator 路由定位器
 
 直接获取路由的方法是通过RouteLocator 接口获取。同样，该顶级接口有多个实现类
 
@@ -903,7 +903,7 @@ public interface RouteLocator {
 
 
 
-#### Route 路由对象
+### Route 路由对象
 
 Route 路由定义了路由断言、过滤器、路由地址及路由优先级等信息。当请求到达时，在转发到代理服务之前，会依次经过路由判断匹配路由和网关过滤器处理
 
@@ -926,9 +926,9 @@ public class Route implements Ordered {
 
 
 
-#### RouteDefinitionRouteLocator 基于路由定义的定位器
+### RouteDefinitionRouteLocator 基于路由定义的定位器
 
-##### 初始化
+#### 初始化
 
 RouteDefinitionRouteLocator 构造函数有多个参数：路由定义定位器、路由断言工厂、网关过滤器及网关配置对象。根据传入的参数设置RouteDefinitionLocator 和 网关配置，并初始化路由断言 和 网关过滤器。RouteDefinitionRouteLocator 的实现方式是基于路由定义来获取路由，它实现了RouteLocator接口，用来获取路由信息
 
@@ -1127,7 +1127,7 @@ public class RouteDefinitionRouteLocator
 - 这里的routeDefinitionLocator是CompositeRouteDefinitionLocator，它组合了InMemoryRouteDefinitionRepository、PropertiesRouteDefinitionLocator、DiscoveryClientRouteDefinitionLocator三个RouteDefinitionLocator。
 - PropertiesRouteDefinitionLocator是直接使用GatewayProperties的getRoutes()获取，其是通过spring.cloud.gateway.routes配置得来。
 
-##### RouteDefinition转换成Route的流程
+#### RouteDefinition转换成Route的流程
 
 ```mermaid
 graph TD
@@ -1182,7 +1182,7 @@ RouteDefinitionRouteLocator.java
 - RouteDefinitionLocator#convertToRoute ：是具体的转换方法，转换过程中涉及到路由断言 和 网关过滤器的处理，最后构建为Route 对象。
 - 此处网关过滤器处理包括两种，一种是默认过滤器，作用于所有路由；一种是指定路由的自定义过滤器。首先获取默认过滤器，根据过滤器名称获取对应的过滤器，最终转换成有优先级的OrderedGatewayFilter。
 
-##### convertToRoute##combinePredicates
+#### convertToRoute##combinePredicates
 
 combinePredicates主要是对找出来的predicate进行and操作
 
@@ -1235,7 +1235,7 @@ combinePredicates主要是对找出来的predicate进行and操作
 
 
 
-##### convertToRoute##getFilters
+#### convertToRoute##getFilters
 
 getFilters 主要是利用loadGatewayFilters获取filter，使用AnnotationAwareOrderComparator进行排序
  loadGatewayFilters利用工厂方法，使用GatewayFilterFactory根据config 获取具体的GatewayFilter实例
@@ -1305,7 +1305,7 @@ getFilters 主要是利用loadGatewayFilters获取filter，使用AnnotationAware
 
 
 
-#### CachingRouteLocator
+### CachingRouteLocator
 
 ```
 /**
@@ -1359,7 +1359,7 @@ public class CachingRouteLocator
 
 根据传入的路由定位器获取路由信息并存储到缓存中。通过监听RefreshRoutesEvent事件刷新缓存的路由信息。
 
-#### CompositeRouteLocator 基于组合方式的路由定位器
+### CompositeRouteLocator 基于组合方式的路由定位器
 
 ```java
 public class CompositeRouteLocator implements RouteLocator {
@@ -1379,7 +1379,7 @@ public class CompositeRouteLocator implements RouteLocator {
 
 组合方式的路由定位器，将实现RouteLocator接口的路由定位器组合在一起，提供获取路由的统一入口。
 
-#### 小结
+### 小结
 
 RouteLocator醉经使用的是CachingRouteLocator，它包装了CompositeRouteLocator，而CompositeRouteLocator则组合了RouteDefinitionRouteLocator。
 
@@ -1387,6 +1387,6 @@ RouteDefinitionRouteLocator与RouteDefinitionLocator比较容易混淆，前者�
 
 
 
-### 读取requestBody
+## 读取requestBody
 
 > 参考：https://www.cnblogs.com/cafebabe-yun/p/9328554.html
