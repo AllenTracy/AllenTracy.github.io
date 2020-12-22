@@ -884,7 +884,7 @@ public class InMemoryRouteDefinitionRepository implements RouteDefinitionReposit
 
 RouteLocator路由定位器，顾名思义就是用来获取路由的方法。该路由定位器为顶级接口有多个实现类
 
-![avatar](..\assets\img\sample\routeLocator类图.png)
+![avatar](../assets/img/sample/routeLocator类图.png)
 
 
 
